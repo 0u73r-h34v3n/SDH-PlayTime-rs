@@ -1,6 +1,10 @@
-[package]
-name = "PlayTime-BackEnd"
-version = "0.1.0"
-edition = "2024"
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+    "crates/pyo3",
+    "crates/server",
+]
 
-[dependencies]
+[workspace.dependencies]
+playtime-core = { path = "crates/core" }

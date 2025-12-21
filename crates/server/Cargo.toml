@@ -1,0 +1,12 @@
+[package]
+name = "playtime-server"
+version = "0.1.0"
+edition = "2024"
+description = "HTTP server"
+
+[[bin]]
+name = "server"
+path = "src/main.rs"
+
+[dependencies]
+

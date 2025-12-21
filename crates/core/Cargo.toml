@@ -1,0 +1,15 @@
+[package]
+name = "playtime-core"
+version = "0.1.0"
+edition = "2024"
+description = "Core library for PlayTime - game time tracking for Steam Deck"
+
+[dependencies]
+chrono = "0.4.42"
+parking_lot = "0.12.5"
+rusqlite = { version = "0.38.0", features = ["bundled"] }
+thiserror = "2.0.17"
+tracing = "0.1.44"
+
+[dev-dependencies]
+uuid = { version = "1.11", features = ["v4"] }
