@@ -172,12 +172,17 @@ impl GamesDao {
 #[cfg(test)]
 mod tests {
     use std::env;
+    use std::time::{SystemTime, UNIX_EPOCH};
 
     use super::*;
 
     fn setup_test_db() -> Arc<Database> {
         let temp_dir = env::temp_dir();
-        let db_path = temp_dir.join(format!("test_games_{}.db", uuid::Uuid::new_v4()));
+        let timestamp = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_nanos();
+        let db_path = temp_dir.join(format!("test_games_{}.db", timestamp));
         let db = Arc::new(Database::new(&db_path).unwrap());
 
         // Create tables (simplified)
