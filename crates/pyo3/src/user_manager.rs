@@ -5,18 +5,21 @@ use std::sync::Arc;
 use parking_lot::Mutex;
 use pyo3::exceptions::PyException;
 use pyo3::prelude::*;
+use pyo3_stub_gen::derive::{gen_stub_pyclass, gen_stub_pymethods};
 
 use crate::db::get_or_create_database;
 
 const USERS_SUBDIR: &str = "users";
 const STORAGE_DB_FILENAME: &str = "storage.db";
 
+#[gen_stub_pyclass]
 #[pyclass]
 pub struct UserManager {
     data_dir: PathBuf,
     current_user_id: Arc<Mutex<Option<String>>>,
 }
 
+#[gen_stub_pymethods]
 #[pymethods]
 impl UserManager {
     #[new]
@@ -182,4 +185,3 @@ impl UserManager {
         Ok(())
     }
 }
-

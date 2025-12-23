@@ -11,6 +11,8 @@ use playtime_core::domain::TimeTrackingService;
 use playtime_core::error::Error as CoreError;
 use pyo3::exceptions::PyException;
 use pyo3::prelude::*;
+use pyo3_stub_gen::define_stub_info_gatherer;
+use pyo3_stub_gen::derive::{gen_stub_pyclass, gen_stub_pyfunction, gen_stub_pymethods};
 
 use crate::db::get_or_create_database;
 
@@ -19,9 +21,11 @@ fn to_py_err(err: CoreError) -> PyErr {
     PyException::new_err(err.to_string())
 }
 
+#[gen_stub_pyclass]
 #[pyclass]
 pub struct PlayTime {}
 
+#[gen_stub_pymethods]
 #[pymethods]
 impl PlayTime {
     #[new]
@@ -50,7 +54,6 @@ impl PlayTime {
             .add_time(game_id, game_name, started_at, ended_at, None)
             .map_err(to_py_err)
     }
-
 }
 
 impl PlayTime {

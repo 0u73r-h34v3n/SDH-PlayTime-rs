@@ -4,8 +4,11 @@ mod user_manager;
 
 pub use playtime::PlayTime;
 use pyo3::prelude::*;
+use pyo3_stub_gen::define_stub_info_gatherer;
+use pyo3_stub_gen::derive::gen_stub_pyfunction;
 pub use user_manager::UserManager;
 
+#[gen_stub_pyfunction]
 #[pyfunction]
 fn clear_db_cache() {
     db::clear_cache();
@@ -19,3 +22,5 @@ fn playtime_rs(m: &Bound<'_, PyModule>) -> PyResult<()> {
 
     Ok(())
 }
+
+define_stub_info_gatherer!(stub_info);
